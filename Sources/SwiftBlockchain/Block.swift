@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Block {
+struct Block: Equatable {
     
     var index: Int
     var previousHash: String
@@ -19,10 +19,10 @@ struct Block {
     static var genesis: Block {
         return Block(index: 0, 
                      previousHash: "0",
-                     timestamp: 1508270000000,
+                     timestamp: 1697293989000,
                      data: "Genesis Block created",
-                     hash: "000dc75a315c77a1f9c98fb6247d03dd18ac52632d7dc6a9920261d8109b37cf",
-                     nonce: 604)
+                     hash: "0000cc157676415ae96d7c678abff10dc34a27171f04fc0c49e47115e863e85a",
+                     nonce: 123)
     }
     
 }
