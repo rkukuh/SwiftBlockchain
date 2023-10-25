@@ -16,11 +16,11 @@ final class BlockTests: XCTestCase {
         let genesis = Block.genesis
         
         XCTAssertEqual(genesis.index, 0)
-        XCTAssertEqual(genesis.previousHash, "0")
+        XCTAssertEqual(genesis.previousHash, "0000000000000000000000000000000000000000000000000000000000000000")
         XCTAssertEqual(genesis.timestamp, 1697293989000)
         XCTAssertEqual(genesis.data, "Genesis Block created")
         XCTAssertEqual(genesis.hash, "0000cc157676415ae96d7c678abff10dc34a27171f04fc0c49e47115e863e85a")
-        XCTAssertEqual(genesis.nonce, 123)
+        XCTAssertEqual(genesis.nonce, 178458)
     }
     
 }

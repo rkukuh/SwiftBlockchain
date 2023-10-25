@@ -8,7 +8,6 @@
 import Foundation
 import CryptoKit
 
-@available(macOS 10.15, *)
 class Blockchain {
     
     var difficulty: Int
