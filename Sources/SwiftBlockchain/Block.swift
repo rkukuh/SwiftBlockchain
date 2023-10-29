@@ -9,12 +9,12 @@ import Foundation
 
 public struct Block: Equatable {
     
-    var index: Int
-    var previousHash: String
-    var timestamp: UInt64
-    var data: String
-    var hash: String
-    var nonce: Int
+    public var index: Int
+    public var previousHash: String
+    public var timestamp: UInt64
+    public var data: String
+    public var hash: String
+    public var nonce: Int
     
     public static var genesis: Block {
         return Block(index: 0, 
