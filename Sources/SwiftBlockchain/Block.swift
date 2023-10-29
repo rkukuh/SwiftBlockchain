@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Block: Equatable {
+public struct Block: Equatable {
     
     var index: Int
     var previousHash: String
