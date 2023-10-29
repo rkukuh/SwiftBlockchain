@@ -13,20 +13,20 @@ class Blockchain {
     var difficulty: Int
     var blockchain: [Block]
     
-    init() {
+    public init() {
         self.blockchain = [Block.genesis]
         self.difficulty = 3
     }
     
-    func get() -> [Block] {
+    public func get() -> [Block] {
         return self.blockchain
     }
     
-    var latestBlock: Block {
+    public var latestBlock: Block {
         return self.blockchain.last!
     }
     
-    func isValidHashDifficulty(hash: String) -> Bool {
+    public func isValidHashDifficulty(hash: String) -> Bool {
         let prefix = String(repeating: "0", count: self.difficulty)
         return hash.hasPrefix(prefix)
     }
@@ -47,7 +47,7 @@ class Blockchain {
                                   nonce: block.nonce)
     }
     
-    func mine(data: String) {
+    public func mine(data: String) {
         do {
             let newBlock = try generateNextBlock(data: data)
             try addBlock(newBlock: newBlock)
@@ -56,7 +56,7 @@ class Blockchain {
         }
     }
     
-    func generateNextBlock(data: String) throws -> Block {
+    public func generateNextBlock(data: String) throws -> Block {
         let nextIndex = self.latestBlock.index + 1
         let previousHash = self.latestBlock.hash
         var timestamp: UInt64 = UInt64(Date().timeIntervalSince1970 * 1000)
@@ -87,7 +87,7 @@ class Blockchain {
                      nonce: nonce)
     }
     
-    func addBlock(newBlock: Block) throws {
+    public func addBlock(newBlock: Block) throws {
         if isValidNextBlock(nextBlock: newBlock, previousBlock: self.latestBlock) {
             self.blockchain.append(newBlock)
         } else {
@@ -129,7 +129,7 @@ class Blockchain {
         return chain.count > self.blockchain.count
     }
     
-    func replaceChain(newChain: [Block]) {
+    public func replaceChain(newChain: [Block]) {
         if isValidChain(chain: newChain) && isChainLonger(chain: newChain) {
             self.blockchain = newChain
         } else {

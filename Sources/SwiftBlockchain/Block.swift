@@ -16,7 +16,7 @@ public struct Block: Equatable {
     var hash: String
     var nonce: Int
     
-    static var genesis: Block {
+    public static var genesis: Block {
         return Block(index: 0, 
                      previousHash: "0000000000000000000000000000000000000000000000000000000000000000",
                      timestamp: 1697293989000,
