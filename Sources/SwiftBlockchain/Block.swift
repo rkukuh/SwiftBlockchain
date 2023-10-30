@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by R. Kukuh on 14/10/23.
 //
@@ -9,15 +9,15 @@ import Foundation
 
 public struct Block: Equatable {
     
-    public var index: Int
-    public var previousHash: String
-    public var timestamp: UInt64
-    public var data: String
-    public var hash: String
-    public var nonce: Int
+    private(set) public var index: Int
+    private(set) public var previousHash: String
+    private(set) public var timestamp: UInt64
+    private(set) public var data: String
+    private(set) public var hash: String
+    private(set) public var nonce: Int
     
     public static var genesis: Block {
-        return Block(index: 0, 
+        return Block(index: 0,
                      previousHash: "0000000000000000000000000000000000000000000000000000000000000000",
                      timestamp: 1697293989000,
                      data: "Genesis Block created",
