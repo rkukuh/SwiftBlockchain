@@ -10,8 +10,8 @@ import CryptoKit
 
 class Blockchain {
     
-    var difficulty: Int
-    var blockchain: [Block]
+    private(set) public var difficulty: Int
+    private(set) public var blockchain: [Block]
     
     public init() {
         self.blockchain = [Block.genesis]
@@ -31,7 +31,7 @@ class Blockchain {
         return hash.hasPrefix(prefix)
     }
     
-    func calculateHash(index: Int, nonce: Int, previousHash: String, timestamp: UInt64, data: String) -> String {
+    public func calculateHash(index: Int, nonce: Int, previousHash: String, timestamp: UInt64, data: String) -> String {
         let input = "\(index)\(previousHash)\(timestamp)\(data)\(nonce)"
         let inputData = Data(input.utf8)
         let hash = SHA256.hash(data: inputData)
@@ -39,7 +39,7 @@ class Blockchain {
         return hash.compactMap { String(format: "%02x", $0) }.joined()
     }
     
-    func calculateHashForBlock(block: Block) -> String {
+    public func calculateHashForBlock(block: Block) -> String {
         return self.calculateHash(index: block.index,
                                   nonce: block.nonce,
                                   previousHash: block.previousHash,
@@ -95,7 +95,7 @@ class Blockchain {
         }
     }
     
-    func isValidNextBlock(nextBlock: Block, previousBlock: Block) -> Bool {
+    public func isValidNextBlock(nextBlock: Block, previousBlock: Block) -> Bool {
         let nextBlockHash = self.calculateHashForBlock(block: nextBlock)
         
         if previousBlock.index + 1 != nextBlock.index {
@@ -111,7 +111,7 @@ class Blockchain {
         }
     }
     
-    func isValidChain(chain: [Block]) -> Bool {
+    public func isValidChain(chain: [Block]) -> Bool {
         if chain.first != Block.genesis {
             return false
         }
@@ -125,7 +125,7 @@ class Blockchain {
         return true
     }
     
-    func isChainLonger(chain: [Block]) -> Bool {
+    public func isChainLonger(chain: [Block]) -> Bool {
         return chain.count > self.blockchain.count
     }
     
