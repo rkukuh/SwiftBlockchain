@@ -10,19 +10,19 @@ import Foundation
 public struct Block: Equatable {
     
     private(set) public var index: Int
+    private(set) public var nonce: Int
     private(set) public var previousHash: String
+    private(set) public var hash: String
     private(set) public var timestamp: UInt64
     private(set) public var data: String
-    private(set) public var hash: String
-    private(set) public var nonce: Int
     
     public static var genesis: Block {
         return Block(index: 0,
+                     nonce: 178458,
                      previousHash: "0000000000000000000000000000000000000000000000000000000000000000",
-                     timestamp: 1697293989000,
-                     data: "Genesis Block created",
                      hash: "0000cc157676415ae96d7c678abff10dc34a27171f04fc0c49e47115e863e85a",
-                     nonce: 178458)
+                     timestamp: 1697293989000,
+                     data: "Genesis Block created")
     }
     
 }

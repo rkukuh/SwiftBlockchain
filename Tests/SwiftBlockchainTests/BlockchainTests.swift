@@ -55,11 +55,11 @@ final class BlockchainTests: XCTestCase {
         let data = minedBlock.data
         let nonce = minedBlock.nonce
         
-        let calculatedHash = blockchain.calculateHash(index: index, 
+        let calculatedHash = blockchain.calculateHash(index: index,
+                                                      nonce: nonce,
                                                       previousHash: previousHash,
                                                       timestamp: timestamp,
-                                                      data: data,
-                                                      nonce: nonce)
+                                                      data: data)
         
         XCTAssertEqual(calculatedHash, minedBlock.hash)
     }

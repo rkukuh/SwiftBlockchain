@@ -31,7 +31,7 @@ class Blockchain {
         return hash.hasPrefix(prefix)
     }
     
-    func calculateHash(index: Int, previousHash: String, timestamp: UInt64, data: String, nonce: Int) -> String {
+    func calculateHash(index: Int, nonce: Int, previousHash: String, timestamp: UInt64, data: String) -> String {
         let input = "\(index)\(previousHash)\(timestamp)\(data)\(nonce)"
         let inputData = Data(input.utf8)
         let hash = SHA256.hash(data: inputData)
@@ -41,10 +41,10 @@ class Blockchain {
     
     func calculateHashForBlock(block: Block) -> String {
         return self.calculateHash(index: block.index,
+                                  nonce: block.nonce,
                                   previousHash: block.previousHash,
                                   timestamp: block.timestamp,
-                                  data: block.data,
-                                  nonce: block.nonce)
+                                  data: block.data)
     }
     
     public func mine(data: String) {
@@ -63,28 +63,28 @@ class Blockchain {
         var nonce = 0
         
         var nextHash = self.calculateHash(index: nextIndex,
+                                          nonce: nonce,
                                           previousHash: previousHash,
                                           timestamp: timestamp,
-                                          data: data,
-                                          nonce: nonce)
+                                          data: data)
         
         while !isValidHashDifficulty(hash: nextHash) {
             nonce += 1
             timestamp = UInt64(Date().timeIntervalSince1970 * 1000)
             
             nextHash = self.calculateHash(index: nextIndex,
+                                          nonce: nonce,
                                           previousHash: previousHash,
                                           timestamp: timestamp,
-                                          data: data,
-                                          nonce: nonce)
+                                          data: data)
         }
         
         return Block(index: nextIndex,
+                     nonce: nonce,
                      previousHash: previousHash,
-                     timestamp: timestamp,
-                     data: data,
                      hash: nextHash,
-                     nonce: nonce)
+                     timestamp: timestamp,
+                     data: data)
     }
     
     public func addBlock(newBlock: Block) throws {
